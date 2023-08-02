@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{%block title%} Home {%endblock%}
+
+{%block content%}
+
+<form method="POST" action="/registration"> 
+    {{form.hidden_tag()}}
+    {{form.username}}
+    {{form.name}}
+    {{form.email}}
+    {{form.age}}
+    {{form.sex}}
+    {{form.phonenumber}}
+    {{form.password}}
+    {{form.submit}}
+
+</form>
+<p> Already a User? <a href="{{url_for('Login')}}"> Login </a> </p>
+
+{%endblock%}

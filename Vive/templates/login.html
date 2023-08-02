@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{%block title%} Home {%endblock%}
+
+{%block content%}
+
+<form method="POST" action="/"> 
+    {{form.csrf_token}}
+    {{form.username}}
+    {{form.password}}
+    {{form.submit}}
+
+</form>
+<p> New User? <a href="{{url_for('registration')}}"> Sign Up</a> </p>
+
+{%endblock%}
