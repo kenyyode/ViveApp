@@ -1,0 +1,25 @@
+.form-username{
+    display: flex;
+    flex-direction: column;
+    margin: 0px;
+}
+
+.form-password{
+    display: flex;
+    flex-direction: column;
+    margin: 0px;
+}
+
+input {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    height: 30px;
+    opacity: 0.8;
+
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    margin-top: 7%;
+}

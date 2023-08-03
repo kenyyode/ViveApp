@@ -28,8 +28,8 @@ class Registration(FlaskForm):
             raise ValidationError("Username Already Taken")
         
 class Login_form(FlaskForm):
-    username= StringField(validators=[InputRequired(), Length(min=4, max=20)],
+    username= StringField("Username", validators=[InputRequired(), Length(min=4, max=20)],
                            render_kw={"placeholder":"username"})
-    password = PasswordField(validators=[InputRequired(), Length(min=4, max=20)],
+    password = PasswordField("Password", validators=[InputRequired(), Length(min=4, max=20)],
                              render_kw={'placeholder':'password'})
     submit = SubmitField("Login")
