@@ -1,20 +1,46 @@
 {% extends 'base.html' %}
 
 {%block title%} Sign Up {%endblock%}
+{%block style%} <link rel="stylesheet" type="text/css" href="{{url_for("static", filename="register.css")}}" {%endblock%}
 {%block header%} <h1> Register </h1> {%endblock%}
 
 {%block content%}
 
 <form method="POST" action="/registration"> 
-    {{form.hidden_tag()}}
-    {{form.username}}
-    {{form.name}}
-    {{form.email}}
-    {{form.age}}
-    {{form.sex}}
-    {{form.phonenumber}}
-    {{form.password}}
-    {{form.submit}}
+{{form.hidden_tag()}}
+<div class="form-row">
+<div class="form-column">
+    <div class="form-group"> 
+    <label for="{{form.username.id}}"> {{form.username.label}} </label> 
+        {{form.username}}
+    </div>
+    <div class="form-group"> 
+        <label for="{{form.name.id}}"> {{form.name.label}} </label> 
+            {{form.name}}
+        </div>
+     <div class="form-group"> 
+            <label for="{{form.email.id}}"> {{form.email.label}} </label> 
+                {{form.email}}
+            </div>
+    <div class="form-group"> 
+                <label for="{{form.age.id}}"> {{form.age.label}} </label> 
+                    {{form.age}}
+                </div>
+                 <div class="form-group"> 
+    <label for="{{form.sex.id}}"> {{form.sex.label}} </label> 
+        {{form.sex}}
+    </div>
+    <div class="form-group"> 
+        <label for="{{form.phonenumber.id}}"> {{form.phonenumber.label}} </label> 
+            {{form.phonenumber}}
+        </div>
+    <div class="form-group"> 
+            <label for="{{form.password.id}}"> {{form.password.label}} </label> 
+                {{form.password}}
+            </div>
+ </div>
+</div>
+    {{form.submit(class="formbtn")}}
 
 </form>
 <p> Already a User? <a href="{{url_for('Login')}}"> Login </a> </p>

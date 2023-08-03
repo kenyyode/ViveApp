@@ -7,8 +7,8 @@
 
 {%block content%}
 
-<form method="POST" action="/"> 
-    {{form.csrf_token}}
+<form method="POST" action="/Login"> 
+{{form.hidden_tag()}}
     <div class="form-username">
         <label for="{{form.username.id}}"> {{form.username.label}} </label>
     {{form.username}}
@@ -20,6 +20,6 @@
     {{form.submit(class="formbtn")}}
 
 </form>
-<p> New User? <a href="{{url_for('registration')}}"> Sign Up</a> </p>
+<p> New User? <a href="{{url_for('registration')}}"> Sign Up </a> </p>
 
 {%endblock%}

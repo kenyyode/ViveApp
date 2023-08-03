@@ -1,6 +1,6 @@
 from Vive import app, db, bcrypt
 from flask import Flask, render_template, redirect, url_for, request
-from flask_login import login_user, login_required, LoginManager
+from flask_login import login_user, login_required, LoginManager, logout_user
 from forms import Registration, Login_form
 from models import User
 
@@ -44,3 +44,9 @@ def registration():
 @login_required
 def dashboard():
     return render_template("dashboard.html")
+
+@app.route("/logout")
+@login_required
+def logout():
+    logout_user()
+    return redirect (url_for("Login"))
