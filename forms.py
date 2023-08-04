@@ -1,8 +1,9 @@
 from flask_wtf import FlaskForm
 from Vive import app
 from wtforms import StringField, IntegerField, EmailField, SelectField, PasswordField, SubmitField
-from wtforms.validators import InputRequired, Length, ValidationError
+from wtforms.validators import InputRequired, Length, ValidationError, EqualTo
 from models import User
+from flask import flash
 
 
 class Registration(FlaskForm):
@@ -33,3 +34,22 @@ class Login_form(FlaskForm):
     password = PasswordField("Password", validators=[InputRequired(), Length(min=4, max=20)],
                              render_kw={'placeholder':'password'})
     submit = SubmitField("Login")
+    
+class forgot_password(FlaskForm):
+    username= StringField("Username", validators=[InputRequired(), Length(min=4, max=20)],
+                           render_kw={"placeholder":"username"})
+    new_password = PasswordField("New Password", validators=[InputRequired(), Length(min=8, max=20)],
+                                 render_kw={"placeholder":"New Password"})
+    confirm_password = PasswordField("Confirm Password", validators=[InputRequired(), Length(min=8, max=20)],
+                                 render_kw={"placeholder":"Confirm Password"})
+    submit = SubmitField("Change Password")
+    
+    def validate(self):
+        if not super().validate():
+            return False
+
+        if self.new_password.data != self.confirm_password.data:
+            flash("Passwords do not match", "error")
+            return False
+
+        return True

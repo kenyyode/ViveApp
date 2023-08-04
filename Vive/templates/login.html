@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {%block title%} Home {%endblock%}
-{%block style%} <link rel="stylesheet" type="text/css" href="{{url_for("static", filename="login.css")}}" {%endblock%}
+{%block style%} <link rel="stylesheet" type="text/css" href="{{url_for("static", filename="login.css")}}"> {%endblock%}
 
 {%block header%} <h1> Welcome Back! </h1> {%endblock%}
 
@@ -17,10 +17,11 @@
         <label for="{{form.password.id}}"> {{form.password.label}} </label> 
     {{form.password}}
     </div>
-    <div class="forgot-password">
-        <p> {{url_for("Forgot_Password")}} </p>
     {{form.submit(class="formbtn")}}
 
+    <div class="forgot-password">
+        <a href="{{url_for("Forgot_Password")}}"> Forgot Password? </a>
+    </div>
 </form>
 {% with messages = get_flashed_messages() %}
   {% if messages %}
@@ -43,6 +44,8 @@
     {%endif%}
     {%endwith%}
 </div>
-<p> New User? <a href="{{url_for('registration')}}"> Sign Up </a> </p>
+<div class="createaccount">
+<p> New to Medive? <a href="{{url_for('registration')}}"> Create An Account </a> </p>
+</div>
 
 {%endblock%}

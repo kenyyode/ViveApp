@@ -18,8 +18,26 @@ input {
 
 }
 
+
 form {
     display: flex;
     flex-direction: column;
     margin-top: 7%;
+}
+
+.createaccount {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 80%;
+    border: 0.5px solid whitesmoke;
+    margin-bottom: 2%;
+    margin-top: 1%;
+}
+
+.forgot-password {
+    display: flex;
+    align-items: right;
+    justify-content: right;
+    margin-bottom: 2%;
 }

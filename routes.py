@@ -1,7 +1,7 @@
 from Vive import app, db, bcrypt
 from flask import Flask, render_template, redirect, url_for, request, flash
 from flask_login import login_user, login_required, LoginManager, logout_user
-from forms import Registration, Login_form
+from forms import Registration, Login_form, forgot_password
 from models import User
 from wtforms.validators import ValidationError 
 
@@ -56,6 +56,18 @@ def logout():
     logout_user()
     return redirect (url_for("Login"))
 
-@app.route ("/Forgot_Password")
+@app.route ("/Forgot_Password", methods=["POST", "GET"])
 def Forgot_Password():
-    return render_template ("forgot.html")
+    form = forgot_password()
+    if form.validate():
+        user = User.query.filter_by(username=form.username.data).first()
+        
+        if user:
+            hashed_password = bcrypt.generate_password_hash(form.new_password.data)
+            user.password = User(password=hashed_password)
+        
+        try:
+            db.sesson.commit()
+            flash("Password Changed Succesfully")
+        
+    return render_template ("forgot.html", form=form)
