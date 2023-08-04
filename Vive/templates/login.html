@@ -17,9 +17,32 @@
         <label for="{{form.password.id}}"> {{form.password.label}} </label> 
     {{form.password}}
     </div>
+    <div class="forgot-password">
+        <p> {{url_for("Forgot_Password")}} </p>
     {{form.submit(class="formbtn")}}
 
 </form>
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <div class="flash-messages">
+      {% for message in messages %}
+        <p>{{ message }}</p>
+      {% endfor %}
+    </div>
+  {% endif %}
+{% endwith %}
+
+<div class="Flash-messages">
+
+{% with messages=get_flashed_messages(with_categories=False)%}
+    {%if messages%}
+        {%for message in messages%}
+        <p> {{message}} </p> 
+        {%endfor%}
+    
+    {%endif%}
+    {%endwith%}
+</div>
 <p> New User? <a href="{{url_for('registration')}}"> Sign Up </a> </p>
 
 {%endblock%}

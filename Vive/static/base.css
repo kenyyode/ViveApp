@@ -33,7 +33,7 @@ form {
     background-color: white;
     margin: 0 auto;
     max-width: 460px;
-    margin-top: 10%;
+    margin-top: 7%;
     color: black;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
@@ -52,8 +52,17 @@ form {
 footer {
     display: grid;
     place-items: center;
-    margin-top: 5%;
+    margin-top: 4%;
     font-family: 'Times New Roman', Times, serif;
 }
 
 
+.flash-messages {
+    display: flex;
+    background-color: red;
+    color: white;
+    width: 60%;
+    justify-content: center;
+    align-items: center;
+    
+}

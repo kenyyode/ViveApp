@@ -1,8 +1,9 @@
 from Vive import app, db, bcrypt
-from flask import Flask, render_template, redirect, url_for, request
+from flask import Flask, render_template, redirect, url_for, request, flash
 from flask_login import login_user, login_required, LoginManager, logout_user
 from forms import Registration, Login_form
 from models import User
+from wtforms.validators import ValidationError 
 
 login_manager= LoginManager()
 login_manager.init_app(app) # this initializes the app called app
@@ -25,6 +26,10 @@ def Login():
             if bcrypt.check_password_hash(user.password, form.password.data):
                 login_user(user)
                 return redirect ("/dashboard")
+            else: 
+                flash("Incorrect Credentials")
+        else: 
+            flash("User does not exist")
     return render_template ("login.html", form=form)
 
 @app.route ("/registration", methods=["POST", "GET"])
@@ -50,3 +55,7 @@ def dashboard():
 def logout():
     logout_user()
     return redirect (url_for("Login"))
+
+@app.route ("/Forgot_Password")
+def Forgot_Password():
+    return render_template ("forgot.html")

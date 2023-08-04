@@ -16,3 +16,9 @@ input {
     width: 50%;
 
 }
+
+.form-group select {
+    margin-bottom: 2%;
+    height: 30px;
+    margin-top: 0.1%;
+}
