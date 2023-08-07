@@ -69,5 +69,7 @@ def Forgot_Password():
         try:
             db.sesson.commit()
             flash("Password Changed Succesfully")
-        
+        except:
+            ValidationError ("Validation Error")
+        return redirect("/Login")
     return render_template ("forgot.html", form=form)

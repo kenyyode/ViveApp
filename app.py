@@ -1,7 +1,7 @@
 from Vive import app, db
 from flask_login import LoginManager
 from models import User
-from routes import Login, registration, dashboard, logout
+from routes import Login, registration, dashboard, logout, Forgot_Password
 
 login_manager= LoginManager()
 login_manager.init_app(app) # this initializes the app called app

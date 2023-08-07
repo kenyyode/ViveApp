@@ -2,4 +2,31 @@
 {%block header%} <h1> Recover Password </h1> {%endblock%}
 {%block content%}
 
+<form method="POST" action="/Forgot_Password">
+    {{form.hidden_tag()}}
+    <div class="form-username">
+        <label for="{{form.username.id}}"> {{form.username.label}} </label>
+    {{form.username}}
+    </div>
+    <div class="form-password"> 
+        <label for="{{form.new_password.id}}"> {{form.new_password.label}} </label> 
+    {{form.new_password}}
+    </div>
+    <div class="form-password"> 
+        <label for="{{form.confirm_password.id}}"> {{form.confirm_password.label}} </label> 
+    {{form.confirm_password}}
+    </div>
+    {{form.submit(class="formbtn")}}
+</form>
+
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <div class="flash-messages">
+      {% for message in messages %}
+        <p>{{ message }}</p>
+      {% endfor %}
+    </div>
+  {% endif %}
+{% endwith %}
+
 {%endblock%}
