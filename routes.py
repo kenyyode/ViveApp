@@ -1,8 +1,8 @@
 from Vive import app, db, bcrypt
 from flask import Flask, render_template, redirect, url_for, request, flash
-from flask_login import login_user, login_required, LoginManager, logout_user
-from forms import Registration, Login_form, forgot_password
-from models import User
+from flask_login import login_user, login_required, LoginManager, logout_user, current_user
+from forms import Registration, Login_form, forgot_password, bodymass
+from models import User, BodyMass
 from wtforms.validators import ValidationError 
 
 login_manager= LoginManager()
@@ -48,7 +48,25 @@ def registration():
 @app.route("/dashboard", methods = ["POST", "GET"])
 @login_required
 def dashboard():
-    return render_template("dashboard.html")
+    name = current_user.username
+    form = bodymass()
+    if request.method == "POST":
+        hieght = form.height.data
+        weight = form.weight.data
+        
+        if hieght == 0:
+            return ("Hieght Cannot be zero")  
+           
+        bmi = weight / (hieght * hieght)
+        user_data = BodyMass(weight=weight, hieght=hieght, Bmi=bmi)
+        try: 
+            db.session.add(user_data)
+            db.session.commit()
+            print('success')
+        except Exception as e:
+            db.session.rollback()
+            raise Exception ('Error in adding data to database')
+    return render_template("dashboard.html", name=name)
 
 @app.route("/logout")
 @login_required

@@ -1,8 +1,8 @@
 from flask_wtf import FlaskForm
 from Vive import app
-from wtforms import StringField, IntegerField, EmailField, SelectField, PasswordField, SubmitField
+from wtforms import StringField, IntegerField, EmailField, SelectField, PasswordField, SubmitField, FloatField
 from wtforms.validators import InputRequired, Length, ValidationError, EqualTo
-from models import User
+from models import User, BodyMass
 from flask import flash
 
 
@@ -53,3 +53,13 @@ class forgot_password(FlaskForm):
             return False
 
         return True
+    
+class bodymass(FlaskForm):
+        height = FloatField(validators=[InputRequired()], 
+                            render_kw={"placeholder":"Height in cm"})
+        weight = FloatField(
+            validators=[InputRequired()],
+            render_kw = {"placeholder":"Weight in kg"}
+        )
+        
+        submit = SubmitField("Save")

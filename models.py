@@ -13,3 +13,12 @@ class User(db.Model, UserMixin):
     
     def __repr__(self):
         return f"<User {self.username}>"
+    
+class BodyMass (db.Model, UserMixin):
+    id= db.Column(db.Integer(), primary_key=True)
+    weight = db.Column(db.Integer(), nullable=False, unique = False)
+    hieght = db.Column (db.Integer(), nullable=False, unique=False)
+    Bmi = db.Column(db.Integer(), nullable=False, unique=False)
+    
+    def __repr__(self):
+        return f"<BMI {self.BMI}>"
